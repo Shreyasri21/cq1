@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [val, setVal] = useState(1);
+  const [colr, setColr] = useState(false);
+  function handleClick() {
+    setColr(!colr);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="box">
+        <div
+          className="circle"
+          style={
+            !colr
+              ? { backgroundColor: "yellow" }
+              : { backgroundColor: "rgb(6, 224, 108)" }
+          }
         >
-          Learn React
-        </a>
-      </header>
+          <h1>{val <= 9 ? `0${val} ` : `${val}`}</h1>
+          <p
+            onClick={() => {
+              setVal(val + 1);
+            }}
+          >
+            Click to increase counter
+          </p>
+        </div>
+      </div>
+      <button
+        style={
+          !colr
+            ? { backgroundColor: "rgb(6, 224, 108)" }
+            : { backgroundColor: "yellow" }
+        }
+        onClick={handleClick}
+      >
+        Change Color
+      </button>
     </div>
   );
 }
